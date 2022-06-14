@@ -1,6 +1,10 @@
 <template>
   <div>
 
+    <MySearch @mysearch="searchFilm"/>
+
+    <!-- {{userText}} -->
+
    
     <MyFilm v-for="(film, index) in listaFilm" :key="index" :filmObject="film" />
 
@@ -11,19 +15,20 @@
 
 import axios from "axios";
 import MyFilm from "./MyFilm.vue";
-// import MySelect from "./MySelect.vue";
+import MySearch from "./MySearch.vue";
 
 export default {
   name: 'ListFilm',
   components: {
     MyFilm,
+    MySearch
 
   },
   data() {
     return {
-      apiUrl: "https://api.themoviedb.org/3/search/movie?api_key=961b93e1f77f38aec4ae0478827c4d1f&language=it-IT&page=1&include_adult=false&query=ritorno+al+futuro",
+      apiUrl: "https://api.themoviedb.org/3/search/movie?api_key=961b93e1f77f38aec4ae0478827c4d1f&query=" + this.userText,
       listaFilm: [],
-      userSelect: "",
+      userText: "",
     }
   },
   created() {
@@ -41,19 +46,18 @@ export default {
         })
 
     },
-    searchGenre(selectUser) {
-      this.userSelect = selectUser;
+    searchFilm(textUser) {
+      this.userText = textUser;
       console.log(this.userSelect);
 
     },
 
   },
   computed: {
-    filterListaDischi() {
+    filterlistaFilm() {
       // return this.listaDischi;
-
-      return this.listaDischi.filter(item => {
-        return item.genre.includes(this.userSelect)
+      return this.listaFilm.filter(item => {
+        return item.title.toLowerCase().includes(this.userText.toLowerCase())
       });
     }
   }
