@@ -4,7 +4,6 @@
     <MySearch @mysearch="searchFilm"/>
 
     <!-- {{userText}} -->
-
    
     <MyFilm v-for="(film, index) in listaFilm" :key="index" :filmObject="film" />
 
@@ -26,7 +25,7 @@ export default {
   },
   data() {
     return {
-      apiUrl: "https://api.themoviedb.org/3/search/movie?api_key=961b93e1f77f38aec4ae0478827c4d1f&query=" + this.userText,
+      apiUrl: "https://api.themoviedb.org/3/search/movie?api_key=961b93e1f77f38aec4ae0478827c4d1f",
       listaFilm: [],
       userText: "",
     }
@@ -36,30 +35,42 @@ export default {
   },
 
   methods: {
+    // axios
     getDischi() {
-      axios.get(this.apiUrl)
-        .then(result => {
-          this.listaFilm = result.data.results
-          console.log(this.listaFilm);
-          // this.listaFilm = result.data.response
+      if(this.userText !== ""){
 
-        })
+        let currentUrl = this.apiUrl + "&query=" + this.userText;
+        console.log("questo è il current" + currentUrl);
+        console.log(this.userText);
+
+        axios.get(currentUrl)
+          .then(result => {
+            this.listaFilm = result.data.results
+            console.log(this.listaFilm);
+            
+          })
+          .catch((error) => {
+            console.log("Errore", error);
+          })
+      }
 
     },
     searchFilm(textUser) {
       this.userText = textUser;
       console.log(this.userSelect);
+      this.getDischi();
+      
 
     },
 
   },
   computed: {
-    filterlistaFilm() {
-      // return this.listaDischi;
-      return this.listaFilm.filter(item => {
-        return item.title.toLowerCase().includes(this.userText.toLowerCase())
-      });
-    }
+    // filterlistaFilm() {
+    //   // return this.listaDischi;
+    //   return this.listaFilm.filter(item => {
+    //     return item.title.toLowerCase().includes(this.userText.toLowerCase())
+    //   });
+    // }
   }
 
 }
