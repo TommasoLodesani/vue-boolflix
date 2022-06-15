@@ -8,7 +8,7 @@
       <li>Voto:{{Math.round(filmObject.vote_average / 2)}}</li><br>
       <font-awesome-icon v-for="i in getStarPiene(filmObject.vote_average)" :key="i" icon="fa-solid fa-star" />
       <font-awesome-icon v-for="i in getStarVuote(filmObject.vote_average)" :key="i" icon="fa-regular fa-star" />
-      <!-- <li><font-awesome-icon icon="fa-solid fa-user-secret" /></li> -->
+  
       
     </ul>
   </div>
