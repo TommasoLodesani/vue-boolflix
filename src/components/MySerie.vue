@@ -1,11 +1,11 @@
 <template>
-  <div class="film">
-    <span>{{filmObject.original_title}}</span><br>
-    <span>{{filmObject.title}}</span><br>
-    <span> <LangFlagVue :iso="filmObject.original_language"/> </span><br>
-    <span>Voto: {{filmObject.vote_average}}</span><br>
+  <div class="serie">
+    <span>{{serieObject.original_name}}</span><br>
+    <span>{{serieObject.name}}</span><br>
+    <span> <LangFlagVue :iso="serieObject.original_language"/> </span><br>
+    <span>Voto: {{serieObject.vote_average}}</span><br>
+    
   </div>
-  
 </template>
 
 <script>
@@ -15,9 +15,9 @@ import LangFlagVue from '../../node_modules/vue-lang-code-flags/LangFlag.vue';
 
 
 export default {
-    name: "MyFilm",
+    name: "MySerie",
     props: {
-        filmObject: Object
+        serieObject: Object
     },
     data() {
         return {};

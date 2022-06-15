@@ -1,11 +1,12 @@
 <template>
   <div>
 
-    <MySearch @mysearch="searchFilm"/>
+    <MySearch @mysearch="searchFilm" />
 
     <!-- {{userText}} -->
-   
-    <MyFilm v-for="(film, index) in listaFilm" :key="index" :filmObject="film" />
+
+    <MyFilm v-for="(film, index) in listaFilm" :key="index" :filmObject="film"  />
+    <MySerie v-for="(serie, index) in listaSerie" :key="index" :serieObject="serie"/>
 
   </div>
 </template>
@@ -14,40 +15,65 @@
 
 import axios from "axios";
 import MyFilm from "./MyFilm.vue";
+import MySerie from "./MySerie.vue";
 import MySearch from "./MySearch.vue";
 
 export default {
   name: 'ListFilm',
   components: {
     MyFilm,
-    MySearch
+    MySearch,
+    MySerie
 
   },
   data() {
     return {
-      apiUrl: "https://api.themoviedb.org/3/search/movie?api_key=961b93e1f77f38aec4ae0478827c4d1f",
+      apiUrl: "https://api.themoviedb.org/3/search/movie?api_key=961b93e1f77f38aec4ae0478827c4d1f&language=it_IT",
+      apiUrlSerie : "https://api.themoviedb.org/3/search/tv?api_key=961b93e1f77f38aec4ae0478827c4d1f&language=it_IT",
       listaFilm: [],
+      listaSerie: [],
       userText: "",
     }
   },
   created() {
-    this.getDischi();
+    this.getFilm();
   },
 
   methods: {
     // axios
-    getDischi() {
-      if(this.userText !== ""){
+    getFilm() {
+      if (this.userText !== "") {
 
         let currentUrl = this.apiUrl + "&query=" + this.userText;
-        console.log("questo è il current" + currentUrl);
-        console.log(this.userText);
+        console.log(1 + currentUrl);
+        console.log( 2 +this.userText);
 
         axios.get(currentUrl)
           .then(result => {
             this.listaFilm = result.data.results
-            console.log(this.listaFilm);
-            
+            console.log( 3 + this.listaFilm);
+
+          })
+          .catch((error) => {
+            console.log("errore", error);
+          }),
+          this.getSerie();
+      }
+
+    },
+
+    getSerie(){
+      if (this.userText !== "") {
+
+        let currentUrlSerie = this.apiUrlSerie + "&query=" + this.userText;
+        console.log( 4 + currentUrlSerie);
+        console.log(5 +this.userText);
+
+        axios.get(currentUrlSerie)
+          .then(result => {
+            this.listaSerie = result.data.results
+            console.log( 6 + this.listaSerie);
+
           })
           .catch((error) => {
             console.log("errore", error);
@@ -57,9 +83,8 @@ export default {
     },
     searchFilm(textUser) {
       this.userText = textUser;
-      console.log(this.userSelect);
-      this.getDischi();
-      
+      console.log( 7 + this.userSelect);
+      this.getFilm();
 
     },
 
