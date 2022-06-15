@@ -1,10 +1,14 @@
 <template>
   <div class="film">
     <img :src="'https://image.tmdb.org/t/p/' + 'w342' + filmObject.poster_path" :alt="'immagine ' + filmObject.original_title">
-    <span>{{filmObject.original_title}}</span><br>
-    <span>{{filmObject.title}}</span><br>
-    <span> <LangFlagVue :iso="filmObject.original_language"/></span><br>
-    <span>Voto:{{vote_average}}</span><br>
+    <ul>
+      <li>{{filmObject.original_title}}</li><br>
+      <li>{{filmObject.title}}</li><br>
+      <li> <LangFlagVue :iso="filmObject.original_language"/></li><br>
+      <li>Voto:{{Math.round(filmObject.vote_average / 2)}}</li><br>
+      <!-- <li><font-awesome-icon icon="fa-solid fa-user-secret" /></li> -->
+      
+    </ul>
   </div>
 
 </template>
@@ -13,7 +17,10 @@
 
 
 import LangFlagVue from '../../node_modules/vue-lang-code-flags/LangFlag.vue';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 
+library.add(faUserSecret)
 
 export default {
     name: "MyFilm",
@@ -27,17 +34,13 @@ export default {
         };
     },
     components: { LangFlagVue },
-    
-    computed: {
-
-      intNumber(){
-
-        return{
-         
-        }
-        
+    methods:{
+      getNumber(){
+        return 100;
+          
       }
-    }
+
+    },
 }
 </script>
 

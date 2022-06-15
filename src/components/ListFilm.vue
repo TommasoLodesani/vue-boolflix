@@ -90,12 +90,6 @@ export default {
     },
   },
   
-  computed: {
-    getGeneralVote(){
-      // andare a cicliare sull'array della lista film e tirare fuori il voto??
-    }
-  }
-
 }
 </script>
 
