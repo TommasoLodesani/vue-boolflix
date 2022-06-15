@@ -50,7 +50,7 @@ export default {
             
           })
           .catch((error) => {
-            console.log("Errore", error);
+            console.log("errore", error);
           })
       }
 

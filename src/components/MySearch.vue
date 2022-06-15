@@ -15,14 +15,10 @@ export default {
   name: 'MySearch',
   data(){
     return{
-        inputText: ""
+        inputText: "",
+        
     }
-  },
-
-  methods: {
-
-  }
- 
+  }, 
   
 }
 </script>
