@@ -5,8 +5,8 @@
 
     <!-- {{userText}} -->
 
-    <MyFilm v-for="(film, index) in listaFilm" :key="index" :filmObject="film"  />
-    <MySerie v-for="(serie, index) in listaSerie" :key="index" :serieObject="serie"/>
+    <MyFilm v-for="(film, index) in listaFilm" :key="index" :filmObject="film" />
+    <MySerie v-for="(serie, index) in listaSerie" :key="index" :serieObject="serie" />
 
   </div>
 </template>
@@ -29,10 +29,11 @@ export default {
   data() {
     return {
       apiUrl: "https://api.themoviedb.org/3/search/movie?api_key=961b93e1f77f38aec4ae0478827c4d1f&language=it_IT",
-      apiUrlSerie : "https://api.themoviedb.org/3/search/tv?api_key=961b93e1f77f38aec4ae0478827c4d1f&language=it_IT",
+      apiUrlSerie: "https://api.themoviedb.org/3/search/tv?api_key=961b93e1f77f38aec4ae0478827c4d1f&language=it_IT",
       listaFilm: [],
       listaSerie: [],
       userText: "",
+      voto:""
     }
   },
   created() {
@@ -45,34 +46,34 @@ export default {
       if (this.userText !== "") {
 
         let currentUrl = this.apiUrl + "&query=" + this.userText;
-        console.log(1 + currentUrl);
-        console.log( 2 +this.userText);
+        // console.log(+ currentUrl);
+        // console.log(+ this.userText);
 
         axios.get(currentUrl)
           .then(result => {
             this.listaFilm = result.data.results
-            console.log( 3 + this.listaFilm);
+            // console.log(+ this.listaFilm);
 
           })
           .catch((error) => {
             console.log("errore", error);
           }),
-          this.getSerie();
+
+        this.getSerie();
       }
+      },
 
-    },
-
-    getSerie(){
+    getSerie() {
       if (this.userText !== "") {
 
         let currentUrlSerie = this.apiUrlSerie + "&query=" + this.userText;
-        console.log( 4 + currentUrlSerie);
-        console.log(5 +this.userText);
+        // console.log(+ currentUrlSerie);
+        // console.log(+ this.userText);
 
         axios.get(currentUrlSerie)
           .then(result => {
             this.listaSerie = result.data.results
-            console.log( 6 + this.listaSerie);
+            // console.log(+ this.listaSerie);
 
           })
           .catch((error) => {
@@ -83,19 +84,16 @@ export default {
     },
     searchFilm(textUser) {
       this.userText = textUser;
-      console.log( 7 + this.userSelect);
+      // console.log(+ this.userSelect);
       this.getFilm();
 
     },
-
   },
+  
   computed: {
-    // filterlistaFilm() {
-    //   // return this.listaDischi;
-    //   return this.listaFilm.filter(item => {
-    //     return item.title.toLowerCase().includes(this.userText.toLowerCase())
-    //   });
-    // }
+    getGeneralVote(){
+      // andare a cicliare sull'array della lista film e tirare fuori il voto??
+    }
   }
 
 }
