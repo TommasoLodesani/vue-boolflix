@@ -6,6 +6,8 @@
       <li>{{filmObject.title}}</li><br>
       <li> <LangFlagVue :iso="filmObject.original_language"/></li><br>
       <li>Voto:{{Math.round(filmObject.vote_average / 2)}}</li><br>
+      <font-awesome-icon v-for="i in getStarPiene(filmObject.vote_average)" :key="i" icon="fa-solid fa-star" />
+      <font-awesome-icon v-for="i in getStarVuote(filmObject.vote_average)" :key="i" icon="fa-regular fa-star" />
       <!-- <li><font-awesome-icon icon="fa-solid fa-user-secret" /></li> -->
       
     </ul>
@@ -35,9 +37,14 @@ export default {
     },
     components: { LangFlagVue },
     methods:{
-      getNumber(){
-        return 100;
-          
+      getStarPiene(element){
+        let calcPiene = parseInt(Math.round(element/2))
+        return calcPiene
+         
+      },
+      getStarVuote(element){
+        let calcVuote = parseInt(Math.round(5 - (element/2)));
+        return calcVuote;
       }
 
     },
