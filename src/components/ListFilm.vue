@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="my-container">
 
     <header>
       <h2>BOOLFLIX</h2>
@@ -115,6 +115,10 @@ header{
 }
 main{
   display: flex;
+  flex-basis: calc(100% / 3);
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 40px;
   }
 
 </style>

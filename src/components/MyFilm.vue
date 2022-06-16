@@ -1,12 +1,16 @@
 <template>
   <div class="film">
-    <img :src="'https://image.tmdb.org/t/p/' + 'w342' + filmObject.poster_path" :alt="'immagine ' + filmObject.original_title">
+
+    <div class="img-container">
+      <img :src="'https://image.tmdb.org/t/p/' + 'w342' + filmObject.poster_path" :alt="'immagine ' + filmObject.original_title">
+
+    </div>
     
     <div class="description">
       <ul>
-        <li>{{filmObject.original_title}}</li><br>
-        <li>{{filmObject.title}}</li><br>
-        <li> <LangFlagVue :iso="filmObject.original_language"/></li><br>
+        <li><span>Titolo</span> {{filmObject.original_title}}</li>
+        <li>{{filmObject.title}}</li>
+        <li> <LangFlagVue :iso="filmObject.original_language"/></li>
         <!-- <li>Voto:{{Math.round(filmObject.vote_average / 2)}}</li><br> -->
       </ul>
       <span>
@@ -63,7 +67,27 @@ export default {
 <style scoped lang="scss">
 
 .film{
+  margin-bottom: 50px;
+  border: 1px solid white;
+  position: relative;
   display: flex;
+
+
+  .description{
+    width: 345px;
+    height: 515px;
+    background-color: black;
+    color: white;
+    position: absolute;
+    display: none;
+
+  }
+
+  .description:hover{
+    display: block;
+  }
+
+
 }
 
 </style>
