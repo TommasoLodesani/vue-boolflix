@@ -9,10 +9,14 @@
       <li>
         <LangFlagVue :iso="serieObject.original_language" />
       </li>
-      <li>Voto:{{Math.round(serieObject.vote_average / 2)}}</li><br>
-      <font-awesome-icon v-for="i in getStarPiene(serieObject.vote_average)" :key="i" icon="fa-solid fa-star" />
-      <font-awesome-icon v-for="i in getStarVuote(serieObject.vote_average)" :key="i" icon="fa-regular fa-star" />
+      <li>Voto:{{Math.round(serieObject.vote_average / 2)}}</li>
     </ul>
+    <span>
+      <font-awesome-icon v-for="i in getStarPiene(serieObject.vote_average)" :key="i" icon="fa-solid fa-star" />
+    </span>
+    <span>
+      <font-awesome-icon v-for="i in getStarVuote(serieObject.vote_average)" :key="i" icon="fa-regular fa-star" />
+    </span>
   </div>
 </template>
 

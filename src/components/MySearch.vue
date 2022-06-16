@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <input type="text" v-model="inputText"
     @keyup.enter="$emit('mysearch',inputText )">
    
@@ -8,8 +7,6 @@
 </template>
 
 <script>
-
-
 
 export default {
   name: 'MySearch',

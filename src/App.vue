@@ -1,13 +1,10 @@
 <template>
   <div id="app">
 
-   
     <ListFilm/>
 
      <!-- <font-awesome-icon icon="user-secret" /> -->
 
-   
-    
   </div>
 </template>
 
@@ -15,11 +12,15 @@
 
 import ListFilm from './components/ListFilm.vue'
 
+
+
 export default {
   name: 'App',
   components: {
     ListFilm,
-}
+
+  },
+  
 }
 </script>
 
@@ -28,6 +29,10 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  ul{
+    list-style-type: none;
+  }
 }
 
 #app {
@@ -38,9 +43,7 @@ export default {
   // color: #2c3e50;
   // margin-top: 60px;
 
-  main{
-  background-color: #1e2d3b;
-}
+  
 }
 </style>
 

@@ -1,12 +1,17 @@
 <template>
   <div>
 
-    <MySearch @mysearch="searchFilm" />
+    <header>
+      <h2>BOOLFLIX</h2>
+      <MySearch @mysearch="searchFilm" />
 
-    <!-- {{userText}} -->
+    </header>
 
-    <MyFilm v-for="(film, index) in listaFilm" :key="index" :filmObject="film" />
-    <MySerie v-for="(serie, index) in listaSerie" :key="index" :serieObject="serie" />
+    <main>
+      <MyFilm v-for="(film, index) in listaFilm" :key="index" :filmObject="film" />
+      <MySerie v-for="(serie, index) in listaSerie" :key="index" :serieObject="serie" />
+    </main>
+
 
   </div>
 </template>
@@ -84,7 +89,6 @@ export default {
     },
     searchFilm(textUser) {
       this.userText = textUser;
-      // console.log(+ this.userSelect);
       this.getFilm();
 
     },
@@ -95,4 +99,22 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+
+header{
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  background-color: black;
+
+  h2{
+    color: red;
+  }
+}
+main{
+  display: flex;
+  }
+
 </style>
